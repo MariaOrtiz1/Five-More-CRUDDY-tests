@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Bunny from '../lib/models/Bunny.js';
 
 describe('bunny routes', () => {
   beforeEach(() => {
@@ -18,5 +19,19 @@ describe('bunny routes', () => {
       id: '1',
       ...vaati
     });
+  });
+
+
+  it('gets a bunny by id via GET', async () => {
+    const nesma = await Bunny.insert({
+      name: 'nesma',
+      mainColor: 'black',
+      secondColor: 'none',
+      ears: 'long',
+    });
+
+    const res = await request(app).get(`/api/v1/bunnies/${nesma.id}`);
+
+    expect(res.body).toEqual(nesma);
   });
 });
