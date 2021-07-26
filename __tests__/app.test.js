@@ -34,4 +34,32 @@ describe('bunny routes', () => {
 
     expect(res.body).toEqual(nesma);
   });
+
+
+  it('gets all bunnies via GET', async () => {
+    const nesma = await Bunny.insert({
+      name: 'nesma',
+      mainColor: 'black',
+      secondColor: 'none',
+      ears: 'long',
+    });
+
+    const soma = await Bunny.insert({
+      name: 'soma',
+      mainColor: 'black',
+      secondColor: 'none',
+      ears: 'medium',
+    });
+
+    const freidrik = await Bunny.insert({
+      name: 'freidrik',
+      mainColor: 'white',
+      secondColor: 'black',
+      ears: 'long',
+    });
+
+    const res = await request(app).get('/api/v1/bunnies');
+
+    expect(res.body).toEqual([nesma, soma, freidrik]);
+  });
 });
