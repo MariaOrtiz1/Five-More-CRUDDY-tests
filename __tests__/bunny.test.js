@@ -58,7 +58,8 @@ describe('bunny routes', () => {
       ears: 'long',
     });
 
-    const res = await request(app).get('/api/v1/bunnies');
+    const res = await request(app)
+      .get('/api/v1/bunnies');
 
     expect(res.body).toEqual([nesma, soma, freidrik]);
   });
@@ -78,4 +79,19 @@ describe('bunny routes', () => {
     expect(res.body).toEqual({ ...soma, mainColor: 'white' });
   });
 
+  it('deletes an existing bunny by id via DELETE', async () => {
+    const vaati = await Bunny.insert({
+      name: 'vaati',
+      mainColor: 'white',
+      secondColor: 'black',
+      ears: 'long',
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/bunnies/${vaati.id}`);
+
+    expect(res.body).toEqual({ 
+      message: `${vaati.id} has hopped away!`
+    });
+  });
 });
