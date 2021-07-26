@@ -75,7 +75,7 @@ describe('bunny routes', () => {
       .put(`/api/v1/bunnies/${soma.id}`)
       .send({ mainColor: 'white' });
 
-    expect(res.body).toEqual({...soma, mainColor: 'white' });
+    expect(res.body).toEqual({ ...soma, mainColor: 'white' });
   });
 
 });
