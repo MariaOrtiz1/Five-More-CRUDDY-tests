@@ -62,4 +62,20 @@ describe('bunny routes', () => {
 
     expect(res.body).toEqual([nesma, soma, freidrik]);
   });
+
+  it('updates a bunny by id via PUT', async () => {
+    const soma = await Bunny.insert({
+      name: 'soma',
+      mainColor: 'black',
+      secondColor: 'none',
+      ears: 'medium',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/bunnies/${soma.id}`)
+      .send({ mainColor: 'white' });
+
+    expect(res.body).toEqual({...soma, mainColor: 'white' });
+  });
+
 });
