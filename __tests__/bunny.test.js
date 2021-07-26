@@ -80,7 +80,7 @@ describe('bunny routes', () => {
   });
 
   it('deletes an existing bunny by id via DELETE', async () => {
-    const vaati = await Bunny.insert({
+    const bunny = await Bunny.insert({
       name: 'vaati',
       mainColor: 'white',
       secondColor: 'black',
@@ -88,10 +88,10 @@ describe('bunny routes', () => {
     });
 
     const res = await request(app)
-      .delete(`/api/v1/bunnies/${vaati.id}`);
+      .delete(`/api/v1/bunnies/${bunny.id}`);
 
     expect(res.body).toEqual({ 
-      message: `${vaati.id} has hopped away!`
+      message: `${bunny.name} has hopped away!`
     });
   });
 });
