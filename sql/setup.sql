@@ -5,5 +5,5 @@ CREATE TABLE bunnies (
     name TEXT NOT NULL,
     main_color TEXT NOT NULL,
     second_color TEXT NOT NULL,
-    ear TEXT
+    ears TEXT
 );
