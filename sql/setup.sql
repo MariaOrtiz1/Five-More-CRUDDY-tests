@@ -17,3 +17,12 @@ CREATE TABLE sundaes (
     toppings TEXT NOT NULL,
     additional_toppings TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS characters;
+CREATE TABLE characters (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    class TEXT NOT NULL,
+    race TEXT NOT NULL,
+    gender TEXT NOT NULL
+);
