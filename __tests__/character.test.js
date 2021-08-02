@@ -20,4 +20,17 @@ describe('character routes', () => {
       ...lia
     });
   });
+
+  it('gets a character by id via GET', async () => {
+    const lia = await Character.insert({
+      name: 'Amelia Silverwind', 
+      jobClass: 'witch', 
+      race: 'changeling', 
+      gender: 'female'
+    });
+
+    const res = await request(app).get(`/api/v1/characters/${lia.id}`);
+
+    expect(res.body).toEqual(lia);
+  });
 });
