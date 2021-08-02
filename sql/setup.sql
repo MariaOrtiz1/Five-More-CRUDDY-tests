@@ -26,3 +26,13 @@ CREATE TABLE characters (
     race TEXT NOT NULL,
     gender TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS champions;
+CREATE TABLE champions (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    role TEXT NOT NULL,
+    damage TEXT NOT NULL,
+    difficulty INTEGER NOT NULL,
+    region TEXT NOT NULL
+);
