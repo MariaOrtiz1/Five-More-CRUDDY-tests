@@ -82,5 +82,22 @@ describe('character routes', () => {
       .send({ jobClass: 'magus' });
 
     expect(res.body).toEqual({ ...wesley, jobClass: 'magus' });
+
+    it('deletes an existing character by id via DELETE', async () => {
+      const voi = await Character.insert({
+        name: 'Voithys',
+        jobClass: 'monk',
+        race: 'aasimar',
+        gender: 'male',
+      });
+  
+      const res = await request(app)
+        .delete(`/api/v1/characters/${voi.id}`);
+  
+      expect(res.body).toEqual({ 
+        message: `${voi.name} has left the party`
+      });
+    });
   });
 });
+
