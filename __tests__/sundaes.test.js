@@ -20,4 +20,17 @@ describe('sundae routes', () => {
       ...sundae
     });
   });
+
+  it('gets a sundae order by id via GET', async () => {
+    const sundae = await Sundae.insert({
+      flavor: 'chocolate and strawberry',
+      scoops: 2,
+      toppings: 'hot fudge',
+      additionalToppings: 'chocolate chips',
+    });
+
+    const res = await request(app).get(`/api/v1/bunnies/${sundae.id}`);
+
+    expect(res.body).toEqual(sundae);
+  });
 });
