@@ -33,4 +33,39 @@ describe('character routes', () => {
 
     expect(res.body).toEqual(lia);
   });
+
+  it('gets all characters via GET', async () => {
+    const lia = await Character.insert({
+      name: 'Amelia Silverwind', 
+      jobClass: 'witch', 
+      race: 'changeling', 
+      gender: 'female'
+    });
+
+    const kyv = await Character.insert({
+      name: 'Kyvernys Gracewind', 
+      jobClass: 'champion/monk', 
+      race: 'human', 
+      gender: 'male'
+    });
+
+    const wesley = await Character.insert({
+      name: 'Wesley Owens', 
+      jobClass: 'magus', 
+      race: 'human', 
+      gender: 'male'
+    });
+
+    const yun = await Character.insert({
+      name: 'Volyun Junaiper', 
+      jobClass: 'druid', 
+      race: 'elf', 
+      gender: 'male'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/characters');
+
+    expect(res.body).toEqual([lia, kyv, wesley, yun]);
+  });
 });
