@@ -68,4 +68,19 @@ describe('character routes', () => {
 
     expect(res.body).toEqual([lia, kyv, wesley, yun]);
   });
+
+  it('updates a character by id via PUT', async () => {
+    const wesley = await Character.insert({
+      name: 'Wesley Owens', 
+      jobClass: 'sorcerer', 
+      race: 'human', 
+      gender: 'male'
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/characters/${wesley.id}`)
+      .send({ jobClass: 'magus' });
+
+    expect(res.body).toEqual({ ...wesley, jobClass: 'magus' });
+  });
 });
