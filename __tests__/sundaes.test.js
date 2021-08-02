@@ -61,4 +61,18 @@ describe('sundae routes', () => {
 
     expect(res.body).toEqual([sundaeOne, sundaeTwo, sundaeThree]);
   });
+
+  it('updates a sundae order by id via PUT', async () => {
+    const sundae = await Sundae.insert({
+      flavor: 'chocolate and strawberry',
+      scoops: 2,
+      toppings: 'hot fudge',
+      additionalToppings: 'chocolate chips',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/sundaes/${sundae.id}`)
+      .send({ scoops: 3 });
+    expect(res.body).toEqual({ ...sundae, scoops: 3 });
+  });
 });
