@@ -56,4 +56,19 @@ describe('trial routes', () => {
 
     expect(res.body).toEqual([titania, innocence, hades]);
   });
+
+  it('updates a trial by id via PUT', async () => {
+    const nidhogg = await Trial.insert({
+      name: 'The Final Steps of Faith',
+      level: 60,
+      boss: 'King Thordan',
+      expansion: 'Heavensward',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/trials/${nidhogg.id}`)
+      .send({ boss: 'Nidhogg' });
+
+    expect(res.body).toEqual({ ...nidhogg, boss: 'Nidhogg' });
+  });
 });
