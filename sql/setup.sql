@@ -36,3 +36,12 @@ CREATE TABLE champions (
     difficulty INTEGER NOT NULL,
     region TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS trials;
+CREATE TABLE trials (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    level INTEGER NOT NULL,
+    boss TEXT NOT NULL,
+    expansion TEXT NOT NULL
+);
