@@ -20,4 +20,12 @@ describe('trial routes', () => {
       ...tsukuyomi
     });
   });
+
+  it('gets a trial by id via GET', async () => {
+    const tsukuyomi = await Trial.insert({ name: 'Castrum Fluminis', level: 70, boss: 'Tsukuyomi', expansion: 'Stormblood' });
+
+    const res = await request(app).get(`/api/v1/trials/${tsukuyomi.id}`);
+
+    expect(res.body).toEqual(tsukuyomi);
+  });
 });
