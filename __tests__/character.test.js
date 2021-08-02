@@ -10,7 +10,7 @@ describe('character routes', () => {
   });
   
   it('creates a character via POST', async () => {
-    const lia = { name: 'Amelia Silverwind', class: 'witch', race: 'changeling', gender: 'female' };
+    const lia = { name: 'Amelia Silverwind', jobClass: 'witch', race: 'changeling', gender: 'female' };
     const res = await request(app)
       .post('/api/v1/characters')
       .send(lia);
