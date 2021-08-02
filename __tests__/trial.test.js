@@ -71,4 +71,20 @@ describe('trial routes', () => {
 
     expect(res.body).toEqual({ ...nidhogg, boss: 'Nidhogg' });
   });
+
+  it('deletes an existing trial by id via DELETE', async () => {
+    const moogle = await Trial.insert({
+      name: 'Thornmarch',
+      level: 50,
+      boss: 'Good King Moogle Mog XII',
+      expansion: 'A realm Reborn',
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/trials/${moogle.id}`);
+
+    expect(res.body).toEqual({ 
+      message: `${moogle.name} has been deafeated!`
+    });
+  });
 });
