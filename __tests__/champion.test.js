@@ -39,4 +39,35 @@ describe('champion routes', () => {
 
     expect(res.body).toEqual(ahri);
   });
+
+  it('gets all champions via GET', async () => {
+    const aphelios = await Champion.insert({ 
+      name: 'Aphelios', 
+      role: 'marksman', 
+      damage: 'attack damage', 
+      difficulty: 3,
+      region: 'Targon'
+    });
+
+    const gragas = await Champion.insert({ 
+      name: 'Gragas', 
+      role: 'fighter', 
+      damage: 'ability power', 
+      difficulty: 2,
+      region: 'Freljord'
+    });
+
+    const pantheon = await Champion.insert({ 
+      name: 'Pantheon', 
+      role: 'fighter', 
+      damage: 'attack damage', 
+      difficulty: 2,
+      region: 'Targon'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/champions');
+
+    expect(res.body).toEqual([aphelios, gragas, pantheon]);
+  });
 });
