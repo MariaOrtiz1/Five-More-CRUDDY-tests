@@ -33,4 +33,32 @@ describe('sundae routes', () => {
 
     expect(res.body).toEqual(sundae);
   });
+
+  it('gets all sundae orders via GET', async () => {
+    const sundaeOne = await Sundae.insert({
+      flavor: 'chocolate and strawberry',
+      scoops: 2,
+      toppings: 'hot fudge',
+      additionalToppings: 'chocolate chips',
+    });
+
+    const sundaeTwo = await Sundae.insert({
+      flavor: 'matcha and ube',
+      scoops: 3,
+      toppings: 'mochi',
+      additionalToppings: 'boba',
+    });
+
+    const sundaeThree = await Sundae.insert({
+      flavor: 'cookies and cream, cookie dough',
+      scoops: 2,
+      toppings: 'banana',
+      additionalToppings: 'whipped cream',
+    });
+
+    const res = await request(app)
+      .get('/api/v1/sundaes');
+
+    expect(res.body).toEqual([sundaeOne, sundaeTwo, sundaeThree]);
+  });
 });
