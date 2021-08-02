@@ -86,4 +86,21 @@ describe('champion routes', () => {
 
     expect(res.body).toEqual({ ...kayle, region: 'Demacia' });
   });
+
+  it('deletes an existing champion by id via DELETE', async () => {
+    const gankplank = await Champion.insert({
+      name: 'Gankplank',
+      role: 'Fighter',
+      damage: 'attack damage',
+      difficulty: 3,
+      region: 'Bilgewater'
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/champions/${gankplank.id}`);
+
+    expect(res.body).toEqual({ 
+      message: `${gankplank.name} has been deleted`
+    });
+  });
 });
