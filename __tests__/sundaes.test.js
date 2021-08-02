@@ -29,7 +29,7 @@ describe('sundae routes', () => {
       additionalToppings: 'chocolate chips',
     });
 
-    const res = await request(app).get(`/api/v1/bunnies/${sundae.id}`);
+    const res = await request(app).get(`/api/v1/sundaes/${sundae.id}`);
 
     expect(res.body).toEqual(sundae);
   });
