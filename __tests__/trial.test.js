@@ -84,7 +84,7 @@ describe('trial routes', () => {
       .delete(`/api/v1/trials/${moogle.id}`);
 
     expect(res.body).toEqual({ 
-      message: `${moogle.name} has been deafeated!`
+      message: `${moogle.boss} has been defeated!`
     });
   });
 });
