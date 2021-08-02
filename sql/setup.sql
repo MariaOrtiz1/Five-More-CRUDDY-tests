@@ -7,3 +7,41 @@ CREATE TABLE bunnies (
     second_color TEXT NOT NULL,
     ears TEXT
 );
+
+
+DROP TABLE IF EXISTS sundaes;
+CREATE TABLE sundaes (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    flavor TEXT NOT NULL,
+    scoops INTEGER NOT NULL,
+    toppings TEXT NOT NULL,
+    additional_toppings TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS characters;
+CREATE TABLE characters (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    job_class TEXT NOT NULL,
+    race TEXT NOT NULL,
+    gender TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS champions;
+CREATE TABLE champions (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    role TEXT NOT NULL,
+    damage TEXT NOT NULL,
+    difficulty INTEGER NOT NULL,
+    region TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS trials;
+CREATE TABLE trials (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    level INTEGER NOT NULL,
+    boss TEXT NOT NULL,
+    expansion TEXT NOT NULL
+);
