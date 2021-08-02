@@ -75,4 +75,20 @@ describe('sundae routes', () => {
       .send({ scoops: 3 });
     expect(res.body).toEqual({ ...sundae, scoops: 3 });
   });
+
+  it('deletes an existing sundae order by id via DELETE', async () => {
+    const sundae = await Sundae.insert({
+      flavor: 'coffee',
+      scoops: 2,
+      toppings: 'hot fudge',
+      additionalToppings: 'none',
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/sundaes/${sundae.id}`);
+
+    expect(res.body).toEqual({ 
+      message: `Your ${sundae.flavor} sundae order has been deleted`
+    });
+  });
 });
